@@ -16,7 +16,7 @@ sed -i "s|SOURCE0|${name_version}.tar.gz|g" $tmp/SPEC/$spec
 
 cp $tmp/SPEC/$spec $sourcedir
 cp -r Quellen $sourcedir
-cp Gemeinsam.inc LICENSE README.md Lib.pro $sourcedir
+cp Gemeinsam.pri LICENSE README.md Lib.pro $sourcedir
 
 
 tar -czf $tmp/SOURCES/${name_version}.tar.gz -C $tmp --exclude=$spec $name_version

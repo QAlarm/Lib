@@ -37,9 +37,12 @@ mkdir -p %{buildroot}%{_libdir}
 mkdir -p %{buildroot}%{_qalarm_conf}
 mkdir -p %{buildroot}%{_qt5_translationdir}
 mkdir -p %{buildroot}%{_rpmconfigdir}/macros.d
+mkdir -p %{buildroot}%{_includedir}/%{name}
 
 install bin/* %{buildroot}%{_libdir}
 install macros.qalarm %{buildroot}%{_rpmconfigdir}/macros.d
+install Gemeinsam.pri %{_includedir}/%{name}
+install Quellen/*.h %{_includedir}/%{name}
 %find_lang %{name} --with-qt
 
 %post -p /sbin/ldconfig
@@ -56,6 +59,7 @@ install macros.qalarm %{buildroot}%{_rpmconfigdir}/macros.d
 %defattr(-,root,root,-)
 %{_libdir}/*.so
 %{_rpmconfigdir}/macros.d/macros.qalarm
+%{_includedir}/%{name}
 
 %changelog
 * Tag Monat 2016 tuxmaster <qalarm@terrortux.de> - 0.0.1-1

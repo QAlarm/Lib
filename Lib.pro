@@ -3,7 +3,7 @@
 # Project created by QtCreator 2016-07-03T11:27:58
 #
 #-------------------------------------------------
-include(Gemeinsam.inc)
+include(Gemeinsam.pri)
 QT       -= gui
 
 TARGET = qalarm
