@@ -21,9 +21,10 @@
 
 #if defined(LIB_ERSTELLEN)
 #  define LIBSHARED_EXPORT Q_DECL_EXPORT
-#  define LIBVERSION "0.0.1"
 #else
 #  define LIBSHARED_EXPORT Q_DECL_IMPORT
 #endif
 
+#define LIBVERSION	"0.0.1"
+#define LIBNAME		"qalarm-lib"
 #endif // LIB_GLOBAL_H
