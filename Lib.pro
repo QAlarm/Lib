@@ -11,10 +11,12 @@ TEMPLATE = lib
 
 DEFINES += LIB_ERSTELLEN
 
-SOURCES += Quellen/Konfiguration.cpp
+SOURCES += Quellen/Konfiguration.cpp \
+    Quellen/Protokollierung.cpp
 
 HEADERS += Quellen/Konfiguration.h\
-	   Quellen/qalarmlib_global.h
+	   Quellen/qalarmlib_global.h \
+    Quellen/Protokollierung.h
 
 DISTFILES += srpm-bauen.sh\
 	     qalarm-lib.spec

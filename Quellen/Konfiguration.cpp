@@ -17,7 +17,6 @@
 #include "Konfiguration.h"
 
 Q_LOGGING_CATEGORY(qalarm_Konfiguration, "QAlarm.Konfiguration")
-
 Konfiguration::Konfiguration(QObject *eltern):Konfiguration (eltern,"")
 {
 	K_Klientconfig=true;
