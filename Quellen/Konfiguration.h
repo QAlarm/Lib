@@ -25,6 +25,7 @@ class LIBSHARED_EXPORT Konfiguration: public QObject
 {
 	Q_OBJECT
 	public:
+		explicit Konfiguration(QObject *eltern);
 		explicit Konfiguration(QObject *eltern, const QString &datei);
 		const QVariant			WertHolen(const QString &name);
 		const QVariant			WertHolen(const QString &name,const QVariant &standart);
@@ -41,6 +42,7 @@ class LIBSHARED_EXPORT Konfiguration: public QObject
 		QSettings*				K_Konfig;
 		QString					K_Datei;
 		QHash<QString,QVariant>	K_Konfigpuffer;
+		bool					K_Klientconfig;
 };
 
 #endif // KONFIGURATION_H

@@ -17,8 +17,15 @@
 #include "Konfiguration.h"
 
 Q_LOGGING_CATEGORY(qalarm_Konfiguration, "QAlarm.Konfiguration")
+
+Konfiguration::Konfiguration(QObject *eltern):Konfiguration (eltern,"")
+{
+	K_Klientconfig=true;
+}
+
 Konfiguration::Konfiguration(QObject *eltern, const QString &datei):QObject (eltern)
 {
+	K_Klientconfig=false;
 	K_Konfig=Q_NULLPTR;
 	K_Datei=datei;
 	QTimer::singleShot(0,this,&Konfiguration::Laden);
@@ -26,17 +33,26 @@ Konfiguration::Konfiguration(QObject *eltern, const QString &datei):QObject (elt
 
 void Konfiguration::Laden()
 {
+	QString Datei;
 	if (K_Konfig)
 		return;
-
-	qCInfo(qalarm_Konfiguration)<<tr("Lade Datei %1").arg(K_Datei);
-
-	if (!QFile::exists(K_Datei))
+	if (!K_Klientconfig)
 	{
-		Q_EMIT DateiNichtGefunden();
-		return;
+		Datei=K_Datei;
+		if (!QFile::exists(K_Datei))
+		{
+			Q_EMIT DateiNichtGefunden();
+			return;
+		}
+		K_Konfig=new QSettings(K_Datei,QSettings::IniFormat,this);
 	}
-	K_Konfig=new QSettings(K_Datei,QSettings::IniFormat,this);
+	else
+	{
+		K_Konfig=new QSettings(QSettings::IniFormat,QSettings::UserScope,qApp->organizationName(),
+							   qApp->applicationName(),this);
+		Datei=K_Konfig->fileName();
+	}
+	qCInfo(qalarm_Konfiguration)<<tr("Lade Datei %1").arg(Datei);
 	K_Konfig->setIniCodec("UTF-8");
 	Q_EMIT Geladen();
 }
