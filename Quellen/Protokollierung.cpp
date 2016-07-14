@@ -33,7 +33,8 @@ Protokollierung::Protokollierung(const int &ebene, QObject *eltern): QObject(elt
 				break;
 		case 4:
 		default:
-				Protokollfilter="*.critical=true\n*.warning=true\n*.info=true\n*.debug=true";
+				Protokollfilter="*.critical=true\n*.warning=true\n*.info=true\n*.debug=true\n"\
+								"qt.qpa.input.debug=false";
 				break;
 	}
 	QLoggingCategory::setFilterRules(Protokollfilter);
