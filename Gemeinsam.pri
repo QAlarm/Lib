@@ -1,3 +1,4 @@
+QT	     += websockets
 CONFIG	     += c++11
 DESTDIR	     = bin
 UI_DIR	     = tmp/ui
