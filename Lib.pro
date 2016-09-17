@@ -9,7 +9,12 @@ QT       -= gui
 TARGET = qalarm
 TEMPLATE = lib
 
+isEmpty(STATISCH) {
 DEFINES += LIB_ERSTELLEN
+}
+else {
+CONFIG += staticlib
+}
 
 SOURCES += Quellen/Konfiguration.cpp \
 	   Quellen/Protokollierung.cpp\

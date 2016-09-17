@@ -17,10 +17,11 @@
 #ifndef PROTOKOLLIERUNG_H
 #define PROTOKOLLIERUNG_H
 
+#include "qalarmlib_global.h"
 #include <QtCore>
 
 Q_DECLARE_LOGGING_CATEGORY(qalarm_Protokollierung)
-class Protokollierung : public QObject
+class LIBSHARED_EXPORT Protokollierung : public QObject
 {
 	Q_OBJECT
 	public:

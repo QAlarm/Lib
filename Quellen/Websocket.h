@@ -17,11 +17,12 @@
 #ifndef WEBSOCKET_H
 #define WEBSOCKET_H
 
+#include "qalarmlib_global.h"
 #include <QtCore>
 #include <QWebSocket>
 
 Q_DECLARE_LOGGING_CATEGORY(qalarm_Websocket)
-class Websocket : public QWebSocket
+class LIBSHARED_EXPORT Websocket : public QWebSocket
 {
 	Q_OBJECT
 	public:
