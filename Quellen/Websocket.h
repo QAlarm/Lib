@@ -27,6 +27,13 @@ class LIBSHARED_EXPORT Websocket : public QWebSocket
 	Q_OBJECT
 	public:
 		Websocket(QObject *eltern=Q_NULLPTR);
+
+	Q_SIGNALS:
+		void	Fehler(const QString &meldung);
+
+	private Q_SLOTS:
+		void	Socketfehler(QAbstractSocket::SocketError fehler);
+		void	SSL_Fehler(const QList<QSslError> &fehler);
 };
 
 #endif // WEBSOCKET_H
