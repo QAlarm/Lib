@@ -1,5 +1,5 @@
 QT	     += websockets
-CONFIG	     += c++11
+CONFIG	     += c++11 no_keywords
 DESTDIR	     = bin
 UI_DIR	     = tmp/ui
 MOC_DIR	     = tmp/moc
