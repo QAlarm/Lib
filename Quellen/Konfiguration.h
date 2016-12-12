@@ -39,6 +39,7 @@ class LIBSHARED_EXPORT Konfiguration: public QObject
 		void					Laden();
 
 	private:
+		Q_DISABLE_COPY(Konfiguration)
 		QSettings*				K_Konfig;
 		QString					K_Datei;
 		QHash<QString,QVariant>	K_Konfigpuffer;
