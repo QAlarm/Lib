@@ -1,3 +1,4 @@
 # Lib
-Um es statisch zu bauen, qmake mit der Option "STATISCH=true" aufrufen. 
-Die gemeinsame Bibliothek.
+## Optionen
+"STATISCH=true" erstellt eine statische Bibliothek</br>
+"journal=true" Protokoll ans systemd Journal schicken.
