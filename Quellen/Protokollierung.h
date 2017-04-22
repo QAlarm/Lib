@@ -26,6 +26,9 @@ class LIBSHARED_EXPORT Protokollierung : public QObject
 	Q_OBJECT
 	public:
 		explicit Protokollierung(const int &ebene,QObject* eltern=Q_NULLPTR);
+#ifdef JOURNAL_NUTZEN
+		static void Journal(QtMsgType type, const QMessageLogContext &kontext, const QString &meldung);
+#endif
 
 	private:
 		Q_DISABLE_COPY(Protokollierung)

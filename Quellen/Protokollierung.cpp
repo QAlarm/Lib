@@ -16,6 +16,10 @@
 */
 #include "Protokollierung.h"
 
+#ifdef JOURNAL_NUTZEN
+#include <systemd/sd-journal.h>
+#endif
+
 Q_LOGGING_CATEGORY(qalarm_Protokollierung, "QAlarm.Protokollierung")
 Protokollierung::Protokollierung(const int &ebene, QObject *eltern): QObject(eltern)
 {
@@ -39,8 +43,37 @@ Protokollierung::Protokollierung(const int &ebene, QObject *eltern): QObject(elt
 	}
 	QLoggingCategory::setFilterRules(Protokollfilter);
 	QLoggingCategory *Protokollkategorie=QLoggingCategory::defaultCategory();
+#ifdef JOURNAL_NUTZEN
+	qInstallMessageHandler(Protokollierung::Journal);
+#endif
 	qCInfo(qalarm_Protokollierung)<<tr("Setzte Protokoll auf: \n\tKritisch: %1.\n\tWarnung: %2\n\tInfo: %3\n\tDebug: %4.").arg(Protokollkategorie->isCriticalEnabled())
 																														   .arg(Protokollkategorie->isWarningEnabled())
 																														   .arg(Protokollkategorie->isInfoEnabled())
 																														   .arg(Protokollkategorie->isDebugEnabled()).toUtf8().constData();
 }
+#ifdef JOURNAL_NUTZEN
+void Protokollierung::Journal(QtMsgType type, const QMessageLogContext &kontext, const QString &meldung)
+{
+	const char *Meldung=meldung.toUtf8().data();
+	switch (type)
+	{
+		case QtDebugMsg:
+				sd_journal_print(LOG_DEBUG,"%s: %s",kontext.category,Meldung);
+			break;
+		case QtInfoMsg:
+				sd_journal_print(LOG_INFO,"%s: %s",kontext.category,Meldung);
+			break;
+		case QtWarningMsg:
+				sd_journal_print(LOG_WARNING,"%s: %s",kontext.category,Meldung);
+			break;
+		case QtCriticalMsg:
+				sd_journal_print(LOG_CRIT,"%s: %s",kontext.category,Meldung);
+			break;
+		case QtFatalMsg:
+				sd_journal_print(LOG_EMERG,"%s: %s",kontext.category,Meldung);
+				abort();
+			break;
+	}
+}
+
+#endif

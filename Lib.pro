@@ -16,6 +16,11 @@ else {
 CONFIG += staticlib
 }
 
+defined(journal,var) {
+DEFINES += JOURNAL_NUTZEN
+LIBS	+= -lsystemd
+}
+
 SOURCES += Quellen/Konfiguration.cpp \
 	   Quellen/Protokollierung.cpp\
 	   Quellen/Websocket.cpp
