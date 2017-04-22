@@ -9,7 +9,7 @@ QT       -= gui
 TARGET = qalarm
 TEMPLATE = lib
 
-isEmpty(STATISCH) {
+isEmpty(statisch) {
 DEFINES += LIB_ERSTELLEN
 }
 else {
